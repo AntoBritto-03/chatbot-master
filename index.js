@@ -108,6 +108,6 @@ function addChat(input, product) {
   setTimeout(() => {
     messagesContainer.appendChild(botDiv);
     botText.innerText = `${product}`;
-    //textToSpeech(product)
+    textToSpeech(product)
   }, 3000);
 }
