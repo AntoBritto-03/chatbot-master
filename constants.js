@@ -19,7 +19,6 @@ const prompts = [
   ["ah", "yes", "ok", "okay", "nice"],
   ["bye", "good bye", "goodbye", "see you later"],
   ["what should i eat today"],
-  ["bro"],
   ["what", "why", "how", "where", "when"],
   ["no", "not sure", "maybe", "no thanks"],
   [""],
@@ -43,7 +42,6 @@ const replies = [
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["Bye", "Goodbye", "See you later"],
   ["Sushi", "Pizza"],
-  randomReply(),
   ["Great question"],
   ["That's ok","I understand","What do you want to talk about?"],
   ["Please say something :("],
@@ -74,18 +72,15 @@ prompts.forEach((messageList, index) => {
   inputs.push(item);
   response.push(item2);
 });
-console.log(inputs);
-console.log(response);
-
 
 function generateRandomId() {
   return Math.random().toString(36).substr(2, 9);
 }
 
-const randomReply = () =>{
-  arr = ['yggvubhn', 'asdfdghj', 'ctfvgunj'];
-  return random([arr]);
-}
+// function randomReply() {
+//   arr = ['yggvubhn', 'asdfdghj', 'ctfvgunj'];
+//   return random([arr]);
+// }
 
 // Possible responses, in corresponding order
 
