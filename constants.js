@@ -3,6 +3,7 @@ const prompts = [
   ["hi", "hey", "hello", "good morning", "good afternoon"],
   ["schemes"],
   ["Tamilnadu Schemes", "are you human", "are you bot", "are you human or bot"],
+  ["Central Schemes"],
   ["who created you", "who made you"],
   [
     "your name please",
@@ -26,9 +27,9 @@ const prompts = [
 ];
 const replies = [
   ["Hello! I am Government Scheme Chatbot How can I assist you today?"],
-  ["Tamilnadu Schemes|| Government Schemes"],
+  ["Tamilnadu Schemes|| Central Schemes"],
   ["SC/st"],
-  ["I am infinite"],
+  ["PM schemes"],
   ["I am just a bot", "I am a bot. What are you?"],
   ["The one true God, JavaScript"],
   ["I am nameless", "I don't have a name"],
@@ -42,7 +43,7 @@ const replies = [
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["Bye", "Goodbye", "See you later"],
   ["Sushi", "Pizza"],
-  ["Bro!"],
+  randomReply(),
   ["Great question"],
   ["That's ok","I understand","What do you want to talk about?"],
   ["Please say something :("],
@@ -73,11 +74,18 @@ prompts.forEach((messageList, index) => {
   inputs.push(item);
   response.push(item2);
 });
+console.log(inputs);
+console.log(response);
+
 
 function generateRandomId() {
   return Math.random().toString(36).substr(2, 9);
 }
 
+const randomReply = () =>{
+  arr = ['yggvubhn', 'asdfdghj', 'ctfvgunj'];
+  return random([arr]);
+}
 
 // Possible responses, in corresponding order
 

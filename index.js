@@ -1,13 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
+function onTextEnter (e) {
+  if (e.code === "Enter") {
+    let input = inputField.value;
+    inputField.value = "";
+    output(input);
+  }
+}
+
+function onDomRender () {
   const inputField = document.getElementById("input");
-  inputField.addEventListener("keydown", (e) => {
-    if (e.code === "Enter") {
-      let input = inputField.value;
-      inputField.value = "";
-      output(input);
-    }
-  });
-});
+  inputField.addEventListener("keydown", onTextEnter);
+}
+document.addEventListener("DOMContentLoaded", onDomRender);
 
 function output(input) {
   let product;
@@ -24,7 +27,8 @@ function output(input) {
     .replace(/whats/g, "what is")
     .replace(/please /g, "")
     .replace(/ please/g, "")
-    .replace(/r u/g, "are you");
+    .replace(/r u/g, "are you")
+    .replace(/r/g, 'are');
 
   if (compare(inputs, response, text)) { 
     // Search for exact match in `inputs`
@@ -95,10 +99,11 @@ function addChat(input, product) {
   } else {
     botText.innerText = product[0]; // Assuming product is an array
   }
-
+  botText.innerText = "Typing...";
   botDiv.appendChild(botText);
   botDiv.appendChild(botImg);
 
+  messagesContainer.appendChild(botDiv);
   // Keep messages at most recent
   messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
 
@@ -106,6 +111,6 @@ function addChat(input, product) {
   setTimeout(() => {
     messagesContainer.appendChild(botDiv);
     botText.innerText = `${product}`;
-    textToSpeech(product)
+    //textToSpeech(product)
   }, 3000);
 }
