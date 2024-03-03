@@ -1,5 +1,3 @@
-import { ChatData } from "./Interface"
-
 // Options the user could type in
 const prompts = [
   ["hi", "hey", "hello", "good morning", "good afternoon"],
@@ -26,29 +24,6 @@ const prompts = [
   [""],
   ["haha", "ha", "lol", "hehe", "funny", "joke"]
 ];
-
-export const inputs : ChatData[] = [];
-export const response : ChatData[] = [];
-prompts.forEach((messageList, index) => {
-  const item : ChatData = {
-    Id: generateRandomId(),
-    messages: messageList
-  };
-  const item2 : ChatData = {
-    Id : item.Id,
-    messages : replies[index]
-  }
-  inputs.push(item);
-  response.push(item2);
-});
-
-function generateRandomId() {
-  return Math.random().toString(36).substr(2, 9);
-}
-
-
-// Possible responses, in corresponding order
-
 const replies = [
   ["Hello! I am Government Scheme Chatbot How can I assist you today?"],
   ["Tamilnadu Schemes|| Government Schemes"],
@@ -59,7 +34,10 @@ const replies = [
   ["I am nameless", "I don't have a name"],
   ["I love you too", "Me too"],
   ["Have you ever felt bad?", "Glad to hear it"],
-  ["Why?", "Why? You shouldn't!", "Try watching TV"],
+  [`Hi Hope you are 
+  doing well today 
+  * hihihihi 
+  * uvjaksnfgsvjb `, "Why? You shouldn't!", "Try watching TV"],
   ["What about?", "Once upon a time..."],
   ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
   ["Bye", "Goodbye", "See you later"],
@@ -80,3 +58,26 @@ const alternative = [
 // Whatever else you want :)
 
 const coronavirus = ["Please stay home", "Wear a mask", "Fortunately, I don't have COVID", "These are uncertain times"]
+
+const inputs = [];
+const response = [];
+prompts.forEach((messageList, index) => {
+  item= {
+    Id: generateRandomId(),
+    messages: messageList
+  };
+  item2  = {
+    Id : item.Id,
+    messages : replies[index]
+  }
+  inputs.push(item);
+  response.push(item2);
+});
+
+function generateRandomId() {
+  return Math.random().toString(36).substr(2, 9);
+}
+
+
+// Possible responses, in corresponding order
+

@@ -17,7 +17,7 @@ function output(input) {
   // Remove digits - not sure if this is best
   // But solves problem of entering something like 'hi1'
 
-  let text = input.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
+  let text = input?.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
   text = text
     .replace(/ a /g, " ")   // 'tell me a story' -> 'tell me story'
     .replace(/i feel /g, "")
@@ -26,17 +26,17 @@ function output(input) {
     .replace(/ please/g, "")
     .replace(/r u/g, "are you");
 
-  if (compare(prompts, replies, text)) { 
-    // Search for exact match in `prompts`
-    product = compare(prompts, replies, text);
+  if (compare(inputs, response, text)) { 
+    // Search for exact match in `inputs`
+    product = compare(inputs, response, text);
   } else if (text.match(/thank/gi)) {
-    product = "You're welcome!"
+    product = ["You're welcome!"]
   } else if (text.match(/(corona|covid|virus)/gi)) {
     // If no match, check if message contains `coronavirus`
-    product = coronavirus[Math.floor(Math.random() * coronavirus.length)];
+    product = [coronavirus[Math.floor(Math.random() * coronavirus.length)]];
   } else {
     // If all else fails: random alternative
-    product = alternative[Math.floor(Math.random() * alternative.length)];
+    product = [alternative[Math.floor(Math.random() * alternative.length)]];
   }
 
   // Update DOM
@@ -44,25 +44,25 @@ function output(input) {
 }
 
 function compare(promptsArray, repliesArray, string) {
-  let reply;
-  let replyFound = false;
-  for (let x = 0; x < promptsArray.length; x++) {
-    for (let y = 0; y < promptsArray[x].length; y++) {
-      if (promptsArray[x][y] === string) {
-        let replies = repliesArray[x];
-        reply = replies[Math.floor(Math.random() * replies.length)];
-        replyFound = false;
-        // Stop inner loop when input value matches prompts
-        break;
+  if (!string) return;
+
+  let reply = null; // Initialize reply to null
+  for (let x = 0; x < promptsArray?.length; x++) {
+    const prompt = promptsArray[x];
+    const response = repliesArray[x];
+
+    // Check if the prompt's messages array includes the input string
+    if (prompt.messages.includes(string)) {
+      // Ensure replies array exists and has the same length as prompts array
+      if (response && response.Id === prompt.Id) {
+        reply = response.messages; // Assign the corresponding reply
+        break; // Exit loop if reply is found
       }
-    }
-    if (replyFound) {
-      // Stop outer loop when reply is found instead of interating through the entire array
-      break;
     }
   }
   return reply;
 }
+
 
 function addChat(input, product) {
   const messagesContainer = document.getElementById("messages");
@@ -80,18 +80,32 @@ function addChat(input, product) {
   botImg.src = "bot-mini.png";
   botImg.className = "avatar";
   botDiv.className = "bot response";
-  botText.innerText = "Typing...";
+  botText.className = "bot-response";
+
+  // Check if product length is greater than one
+  if (product.length > 1) {
+    const ul = document.createElement("ul");
+    ul.className = "bot-response"; // Add class to the ul
+    product.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+    botText.appendChild(ul);
+  } else {
+    botText.innerText = product[0]; // Assuming product is an array
+  }
+
   botDiv.appendChild(botText);
   botDiv.appendChild(botImg);
-  messagesContainer.appendChild(botDiv);
+
   // Keep messages at most recent
   messagesContainer.scrollTop = messagesContainer.scrollHeight - messagesContainer.clientHeight;
 
   // Fake delay to seem "real"
   setTimeout(() => {
+    messagesContainer.appendChild(botDiv);
     botText.innerText = `${product}`;
     textToSpeech(product)
-  }, 3000
-  )
-
+  }, 3000);
 }
