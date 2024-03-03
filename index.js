@@ -18,14 +18,14 @@ function output(input) {
   // But solves problem of entering something like 'hi1'
 
   let text = input?.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
-  // text = text
-  //   .replace(/ a /g, " ")   // 'tell me a story' -> 'tell me story'
-  //   .replace(/i feel /g, "")
-  //   .replace(/whats/g, "what is")
-  //   .replace(/please /g, "")
-  //   .replace(/ please/g, "")
-  //   .replace(/r u/g, "are you")
-  //   .replace(/r/g, 'are');
+  text = text
+  .replace(/ a /g, " ")  
+  .replace(/i feel /g, "")
+  .replace(/whats/g, "what is")
+  .replace(/please /g, "")
+  .replace(/ please/g, "")
+  .replace(/r u/g, "are you")
+  .replace(/r/g, 'are');
 
   if (compare(inputs, response, text)) { 
     // Search for exact match in `inputs`
@@ -53,7 +53,7 @@ function compare(promptsArray, repliesArray, string) {
     const response = repliesArray[x];
 
     // Check if the prompt's messages array includes the input string
-    if (prompt.messages.toLowerCase().includes(string)) {
+    if (prompt.messages.includes(string)) {
       // Ensure replies array exists and has the same length as prompts array
       if (response && response.Id === prompt.Id) {
         reply = response.messages; // Assign the corresponding reply
