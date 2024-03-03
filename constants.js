@@ -2,7 +2,6 @@
 const prompts = [
   ["hi", "hey", "hello", "good morning", "good afternoon"],
   ["schemes"],
-  ["Tamilnadu Schemes", "are you human", "are you bot", "are you human or bot"],
   ["Central Schemes"],
   ["who created you", "who made you"],
   [
@@ -22,17 +21,16 @@ const prompts = [
   ["what", "why", "how", "where", "when"],
   ["no", "not sure", "maybe", "no thanks"],
   [""],
-  ["haha", "ha", "lol", "hehe", "funny", "joke"]
+  ["haha", "ha", "lol", "hehe", "funny", "joke"],
+  ["Central Schemes"],
 ];
 const replies = [
   ["Hello! I am Government Scheme Chatbot How can I assist you today?"],
   ["Tamilnadu Schemes|| Central Schemes"],
-  ["SC/st"],
-  ["PM schemes"],
   ["I am just a bot", "I am a bot. What are you?"],
   ["The one true God, JavaScript"],
-  ["I am nameless", "I don't have a name"],
   ["I love you too", "Me too"],
+  ["SC"],
   ["Have you ever felt bad?", "Glad to hear it"],
   [`Hi Hope you are 
   doing well today 
@@ -45,7 +43,8 @@ const replies = [
   ["Great question"],
   ["That's ok","I understand","What do you want to talk about?"],
   ["Please say something :("],
-  ["Haha!","Good one!"]
+  ["Haha!","Good one!"],
+  ["PM schemes"],
 ]
 
 // Random for any other user input
